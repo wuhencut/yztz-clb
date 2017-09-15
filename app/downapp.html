@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>下载</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            height: 100%;
+            color: #333;
+        }
+
+        body {
+            font: 14px/1.5 微软雅黑, Arial, YaHei, tahoma, 'Hiragino Sans GB', 宋体;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+
+        .fl{
+            float: left;
+        }
+
+        .fr{
+            float: right;
+        }
+
+        .wrap {
+            background: transparent url("images/downapp.jpg") no-repeat scroll center center;
+            height: 3888px;
+            min-width: 1100px;
+        }
+
+        .wrap-app {
+            position: relative;
+            width: 1100px;
+            height: 883px;
+            margin: 0 auto;
+        }
+
+        .layer {
+            position: absolute;
+            top: 450px;
+            left: 655px;
+            width: 355px;
+        }
+
+        .layer .left, .layer .right {
+            display: inline-block;
+            width: 150px;
+            height: 44px;
+            padding-top: 160px;
+            font-size: 18px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .layer .left {
+            background: url("images/download-app.jpg") no-repeat top;
+            background-size: 150px;
+            margin-right: 50px;
+        }
+
+        .layer .right {
+            background: url("images/download-weixin.jpg") no-repeat top;
+            background-size: 150px;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 350px;
+            height: 50px;
+            color: #FFFFFF;
+            font-size: 18px;
+            line-height: 50px;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid #FFFFFF;
+            border-radius: 10px;
+        }
+
+        .btn-wrap{
+            /*padding-top: 80px;*/
+        }
+
+        .btn-wrap .btn{
+            width: 150px;
+            background: #0596FF;
+            border: 1px solid #0596FF;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="wrap-app">
+        <div class="layer">
+            <div class="left">下载APP交易</div>
+            <div class="right">微信扫码交易</div>
+            <!--<a href="http://clb.yztz.cn/app/index.html#/index" class="btn">点击进入网页版交易</a>-->
+            <div class="btn-wrap clearfix">
+                <a class="fl btn" target="_blank" href="https://yztzdownload.oss-cn-hangzhou.aliyuncs.com/clb_apk.apk">安卓下载</a>
+                <a class="fr btn" target="_blank" href="https://itunes.apple.com/us/app/ce-e-bao/id1149183738?l=zh&ls=1&mt=8">IOS下载</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

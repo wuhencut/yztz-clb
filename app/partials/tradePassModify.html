@@ -1,0 +1,27 @@
+<section class="page-user">
+    <div class="page-trade-pass">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>修改提现密码</h3>
+                <a href="#/myInfo" class="nav-left"><i class="icon-back"></i></a>
+            </div>
+        </header>
+        <div class="mt20">
+            <div class="mod-form">
+                <label>原提现密码</label><input ng-model="oldPwd" type="password" class="inp" style="width: 1rem;" placeholder="原提现密码"/>
+                <a href="#/forgetTradePass" class="tip-r txt-blue">忘记密码</a>
+            </div>
+        </div>
+        <div class="mod-form-wrap mt10">
+            <div class="mod-form">
+                <label>提现密码</label><input ng-model="newPwd" type="password" class="inp" placeholder="请输入提现密码"/>
+            </div>
+            <div class="mod-form">
+                <label>确认密码</label><input ng-model="surePwd" type="password" class="inp" placeholder="请输入确认密码"/>
+            </div>
+        </div>
+        <div class="pt30 pl15 pr15">
+            <button class="btn btn-blue" ng-click="tradePassModify()">确定</button>
+        </div>
+    </div>
+</section>

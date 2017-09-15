@@ -1,0 +1,72 @@
+<section id="" class="one-yuan">
+    <div class="mod-one-yuan">
+        <header ng-if="showHeader" class="page-header">
+            <div class="header-wrap">
+                <h3>新人专享</h3>
+                <a href="#/discover" class="nav-left">
+                    <i class="icon-back"></i>
+                </a>
+            </div>
+        </header>
+        <div class="header-banner">
+            <img src="/app/images/activity/oneYuan/MHI-banner.png" alt="">
+            <span ng-click="showCloseDialog()" class="rule">规则</span>
+        </div>
+        <div ng-if="showDialog" class="db-bg" ng-click="showCloseDialog()" style="z-index: 1000"></div>
+        <div ng-if="showDialog" class="rule-outer" style="z-index: 1001">
+            <div class="rule-content">
+                <span ng-click="showCloseDialog()" class="close-rule iconfont">&#xe695;</span>
+                <p class="rule-title">活动规则</p>
+                <div class="rule-text txt-s12 txt-white pb10">
+                    <p>1、体验活动只限新用户(在平台注册过并且未充值的用户)参加</p>
+                    <p>2、一元实盘不能使用红包，每个满足条件的用户仅能参与一次</p>
+                    <p>3、未充值过（快捷支付或支付宝）的用户不能参与体验活动</p>
+                    <p>4、活动交易时间为T+0，交易规则同实盘点买小恒指一致</p>
+                    <p>5、投资人与点买人按91分成进行结算</p>
+                </div>
+            </div>
+        </div>
+        <div class="mod-detail">
+            <!--<div class="introduce-detail">
+                <div class="center-line"></div>
+                <ul class="detail-content">
+                    <li class="begin">
+                        <p><span class="txt-s22 txt-red">1</span></p>
+                        <p class="mt10 txt-s16 txt-black">参与免费体验</p>
+                    </li>
+                    <li class="doing">
+                        <p><span class="txt-s22">2</span></p>
+                        <p class="mt10 txt-s16">开始投资</p>
+                    </li>
+                    <li class="done">
+                        <p><span class="txt-s22">3</span></p>
+                        <p class="mt10 txt-s16">盈利归您</p>
+                    </li>
+                </ul>
+            </div>-->
+            <div class="mod-detail-pic">
+                <!--<p class="header-title"></p>-->
+                <div class="steps">
+                    <div>
+                        <p class="txt-s14">您 <span class="txt-red txt-s18 txt-bold">1</span>元（体验支付流程）</p>
+                    </div>
+                    <p class="txt-black txt-center iconfont" style="line-height: 0.3rem;">&#xe729;</p>
+                    <div>
+                        <p class="txt-s14">点买小恒指(由您决定 <span class="txt-red">看涨</span>或 <span class="txt-green">看跌</span>)</p>
+                    </div>
+                    <p class="txt-black txt-center iconfont" style="line-height: 0.3rem;">&#xe729;</p>
+                    <div>
+                        <p class="txt-s14"><span class="txt-red txt-s18 txt-bold">T+0</span>交易(即时买入和卖出)</p>
+                    </div>
+                </div>
+                <div class="footer-txt mt10 txt-s12">
+                    <p class="txt-center txt-white">(注：该活动仅限新注册用户参加)</p>
+                    <p class="txt-center txt-white mt5">如果不清楚规则,或有其他疑问,请联系客服：400-8888-566</p>
+                </div>
+                <div class="introduce-footer pl15 pr15 mt15">
+                    <p ng-click="goBuy()" style="border-radius:4px;" class="txt-center txt-red txt-s20 pt5 pb5">我要操盘</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

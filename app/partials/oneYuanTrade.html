@@ -1,0 +1,117 @@
+<section class="page-trade">
+    <div class="page-trade-stock">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>新人专享 - 点买小恒指</h3>
+                <a href="#/oneYuanIntroduce" class="nav-left">
+                    <i class="icon-back"></i>
+                </a>
+            </div>
+        </header>
+        <div class="trade-menu">
+            <ul>
+                <li class="m-buy"><a href="#/oneYuanTrade">点买</a></li>
+                <li class="m-sell"><a href="#/oneYuanTradeSell?backURL=/oneYuanIntroduce">点卖</a></li>
+                <li class="m-result"><a href="#/oneYuanTradeResult?backURL=/oneYuanIntroduce">结算</a></li>
+            </ul>
+        </div>
+        <div class="mod-futures mt15">
+            <div class="wrap">
+                <ul class="clearfix">
+                    <li style="width:25%;" class="fl pt5">
+                        <p class="txt-black txt-s20">{{commodityTitles.MHI}}</p>
+                        <p class="txt-grey">{{futureInfo.contractNo}}</p>
+                    </li>
+                    <li style="width:50%;" class="fl txt-center">
+                        <p ng-if="futureInfo.newPrice >= futureInfo.yesterdayPrice" class="txt-s40 txt-red">
+                            {{futureInfo.newPrice}}</p>
+                        <p ng-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-s40 txt-green">
+                            {{futureInfo.newPrice}}</p>
+                    </li>
+                    <li style="width:25%;" class="fl txt-right pt10">
+                        <p ng-if="futureInfo.newPrice > futureInfo.yesterdayPrice" class="txt-red">
+                            +{{futureInfo.changeValue}}</p>
+                        <p ng-if="futureInfo.newPrice == futureInfo.yesterdayPrice" class="txt-red">
+                            {{futureInfo.changeValue}}</p>
+                        <p ng-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-green">
+                            {{futureInfo.changeValue}}</p>
+                        <p ng-if="futureInfo.newPrice > futureInfo.yesterdayPrice" class="txt-red">
+                            +{{futureInfo.changeQuote}}%</p>
+                        <p ng-if="futureInfo.newPrice == futureInfo.yesterdayPrice" class="txt-red">
+                            {{futureInfo.changeQuote}}%</p>
+                        <p ng-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-green">
+                            {{futureInfo.changeQuote}}%</p>
+                    </li>
+                </ul>
+            </div>
+            <!--
+            <div class="pt10 pb10 txt-s12">
+                <table>
+                    <tr>
+                        <td>今开</td>
+                        <td ng-if="futureInfo.openPrice >= futureInfo.yesterdayPrice" class="txt-red">{{futureInfo.openPrice}}</td>
+                        <td ng-if="futureInfo.openPrice < futureInfo.yesterdayPrice" class="txt-green">{{futureInfo.openPrice}}</td>
+                        <td class="txt-center">最高</td>
+                        <td ng-if="futureInfo.highPrice >= futureInfo.yesterdayPrice" class="txt-red txt-center">{{futureInfo.highPrice}}</td>
+                        <td ng-if="futureInfo.highPrice < futureInfo.yesterdayPrice" class="txt-green txt-center">{{futureInfo.highPrice}}</td>
+                        <td class="txt-right">涨跌</td>
+                        <td ng-if="futureInfo.newPrice > futureInfo.yesterdayPrice" class="txt-red txt-right">+{{futureInfo.changeValue}}</td>
+                        <td ng-if="futureInfo.newPrice == futureInfo.yesterdayPrice" class="txt-red txt-right">{{futureInfo.changeValue}}</td>
+                        <td ng-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-green txt-right">{{futureInfo.changeValue}}</td>
+                    </tr>
+                    <tr>
+                        <td>昨收</td>
+                        <td class="txt-gray">{{futureInfo.yesterdayPrice}}</td>
+                        <td class="txt-center">最低</td>
+                        <td ng-if="futureInfo.lowPrice >= futureInfo.yesterdayPrice" class="txt-red txt-center">{{futureInfo.lowPrice}}</td>
+                        <td ng-if="futureInfo.lowPrice < futureInfo.yesterdayPrice" class="txt-green txt-center">{{futureInfo.lowPrice}}</td>
+                        <td class="txt-right">总手</td>
+                        <td class="txt-right txt-gray">{{futureInfo.total}}</td>
+                    </tr>
+                </table>
+            </div>
+            -->
+        </div>
+        <div class="mod-lines act-{{currType}}">
+            <div class="tab-title">
+                <ul class="tab-title-wrap">
+                    <li class="sline" ng-click="switchPanel('sline');">分时图</li>
+                    <li class="tline" ng-click="switchPanel('tline');">闪电图</li>
+                    <li class="kline" ng-click="switchPanel('kline');">K线图</li>
+                </ul>
+            </div>
+            <div class="line-content">
+                <div class="quote-wrap">
+                    <ul class="clearfix">
+                        <li id="sline-wrap-{{uuid}}"></li>
+                        <li id="tline-wrap-{{uuid}}"></li>
+                        <li id="kline-wrap-{{uuid}}"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mod-future-footer">
+            <div class="rate-wrap">
+                <span>
+                    <span class="rate"><i style="width:{{futureInfo.buyNumRate}}%;"></i></span>
+                    <span>{{futureInfo.buyNum}}</span>
+                </span>
+                <span class="txt-light-orange">买卖量</span>
+                <span>
+                    <span>{{futureInfo.sellNum}}</span>
+                    <span class="rate"><i style="width:{{futureInfo.sellNumRate}}%;"></i></span>
+                </span>
+            </div>
+            <div class="btn-wrap clearfix">
+                <div class="fl">
+                    <a href="#/oneYuanTradeBuy/buy" class="btn btn-red"><span class="iconfont">&#xe60f;</span>看涨{{futureInfo.buyPrice}}</a>
+                </div>
+                <div class="fr">
+                    <a href="#/oneYuanTradeBuy/sell" class="btn btn-green"><span class="iconfont">&#xe60e;</span>看跌 {{futureInfo.sellPrice}}</a>
+                </div>
+            </div>
+            <p ng-if="isInPeriod" class="trade-time-tip txt-blue">{{tips}}</p>
+            <p ng-if="!isInPeriod" class="trade-time-tip txt-grey">{{tips}}</p>
+        </div>
+    </div>
+</section>

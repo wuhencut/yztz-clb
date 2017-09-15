@@ -1,0 +1,32 @@
+<section  class="page-guide">
+    <div class="page-activity">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>红包活动</h3>
+                <back-menu></back-menu>
+            </div>
+        </header>
+        <!--<div class="mod-act-actpacket-banner">
+            <img src="/app/images/banner/banner20.png">
+        </div>-->
+        <div class="mod-actpacket-list">
+            <div class="wrap">
+                <div class="list" ng-repeat="item in TipInfo" ng-click="goURL(item.title, item.status)">
+                    <div class="tit">
+                        <p ng-class="{'txt-red': item.status == 0 || item.status == 1}" class="txt-s14">{{item.name}} <span ng-class="{'hot-icon':!$last}"></span><span ng-class="{'hot-icon new-icon':$last}"></span></p>
+                        <p class="desc"  ng-bind="item.description ||'&nbsp;'">{{item.description}}</p>
+                        <span class="fr">
+                            <em ng-if="item.status == 0" class="packet-icon packet-icon-on">{{item.value}}元</em>
+                            <!--<em ng-if="item.status == 0" class="packet-type txt-red">GO</em>-->
+                            <em ng-if="item.status == 1" class="packet-icon packet-icon-on" ng-click="receivePacket(item)">{{item.value}}元</em>
+                            <!--<em ng-if="item.status == 1" class="packet-type">完成</em>-->
+                            <em ng-if="item.status == 2" class="packet-icon">{{item.value}}元</em>
+                            <!--<em ng-if="item.status == 2" class="packet-type">已领</em>-->
+                            <em class="packet-type" ng-class="{'txt-red':item.status == 0}" ng-bind="{'0':'GO','1':'完成','2':'已领'}[item.status]"></em>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

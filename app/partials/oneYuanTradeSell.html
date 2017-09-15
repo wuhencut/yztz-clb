@@ -1,0 +1,73 @@
+<section class="page-trade">
+    <div class="page-trade-sell">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>新人专享 - 点买小恒指</h3>
+                <back-menu></back-menu>
+            </div>
+        </header>
+        <div class="mod-clearing">
+            <div class="trade-menu">
+                <ul>
+                    <li class="m-buy"><a href="#/oneYuanTrade?backURL=/oneYuanIntroduce">点买</a></li>
+                    <li class="m-sell"><a href="#/oneYuanTradeSell">点卖</a></li>
+                    <li class="m-result"><a href="#/oneYuanTradeResult?backURL=/oneYuanIntroduce">结算</a></li>
+                </ul>
+            </div>
+            <div ng-if="trade.id" class="wrap mt15 txt-gray pb15">
+                <ul class="row-1">
+                    <li class="txt-s16">{{trade.commodityName}}－{{trade.commodityNo}}{{trade.contractNo}} <i class="txt-s12 pl10">JQ {{trade.id}}</i></li>
+                </ul>
+                <div class="row-2">
+                    <ul class="clearfix">
+                        <li class="fl">
+                            <p ng-if="trade.direction == 1" class="title txt-red">看涨{{trade.amount}}手</p>
+                            <p ng-if="trade.direction == -1" class="title txt-green">看跌{{trade.amount}}手</p>
+                            <p>买入 &nbsp;&nbsp;{{trade.buyPriceDeal}}</p>
+                            <p>现价 &nbsp;&nbsp;{{trade.price}}</p>
+                        </li>
+                        <li class="fl">
+                            <p ng-if="trade.rmb>0 && trade.status >= 4" class="title txt-red">+{{trade.rmb}}<i
+                                    class="txt-light-gray txt-s12">({{trade.symbol}}{{trade.currMoney}})</i>
+                            </p>
+                            <p ng-if="trade.rmb<0 && trade.status >= 4" class="title txt-green">{{trade.rmb}}<i
+                                    class="txt-light-gray txt-s12">({{trade.symbol}}{{trade.currMoney}})</i>
+                            </p>
+                            <p ng-if="trade.rmb==0 && trade.status >= 4" class="title txt-red">0<i
+                                    class="txt-light-gray txt-s12">({{trade.symbol}}0)</i></p>
+                            <p ng-if="trade.status < 4" class="title txt-light-gray">— —</p>
+                            <p>止盈 &nbsp;&nbsp;{{trade.quitGain}}</p>
+                            <p>止损 &nbsp;-{{trade.quitLoss}}</p>
+                        </li>
+                        <li class="fr pt15">
+                            <div ng-click="sellOutDialog(trade.id,trade.commodityNo,trade.direction,trade.quitCloseRatio,trade.amount,trade.status)"
+                                 ng-if="trade.status == 4" class="state-blue">平仓
+                            </div>
+                            <div ng-if="trade.status == 1 || trade.status == 2 || trade.status == 3" class="state">
+                                正在<br>买入
+                            </div>
+                            <div ng-if="trade.status == 5 || trade.status == 6 || trade.status == 7"
+                                 class="state">
+                                正在<br>卖出
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--弹出单个平仓窗口-->
+            <div ng-if="currCommoID == 1" class="mod-all-sell">
+                <div class="all-sell-options txt-center">
+                    <div class="txt-center txt-gray one-yaun-sell clearfix">
+                        你确定平仓吗？
+                    </div>
+                    <div class="dialog-confirm txt-s16 txt-blue">
+                        <p ng-click="cancelDialog()">取消</p>
+                        <p ng-click="sellCurrCommodity()">确定</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="currCommoID != 0" class="db-bg" style="z-index: 10000"></div>
+            <div ng-if="!trade.id" class="mod-no-data">暂无交易</div>
+        </div>
+    </div>
+</section>

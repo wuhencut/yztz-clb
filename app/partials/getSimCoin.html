@@ -1,0 +1,40 @@
+<section class="page-sim-coin">
+    <div class="page-extension">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>推广赚模拟币</h3>
+                <back-menu></back-menu>
+            </div>
+        </header>
+        <div class="mod-sim-coin">
+            <a href="#/extension" style="display: block" class="header-pic">
+                <img src="/app/images/activity/simCoin/banner1.png" alt="">
+            </a>
+            <div class="sim-balance">
+                <p style="color:#FECB20" class="txt-s16 txt-center">剩余模拟币</p>
+                <p class="txt-orange txt-s26 txt-center">{{simBalance | number : 2}}</p>
+            </div>
+            <p class="txt-s16 txt-center">已成功邀请 <span class="txt-orange">{{userCount}}人</span>加入策略宝</p>
+            <p class="txt-orange txt-s12 txt-center">(共获得{{simPart / 10000 | number : 0}}万模拟币)</p>
+
+            <div class="coin-footer">
+                <!--<p class="copy-url txt-center btn-red iconfont copy">&#xe6c4; 复制邀请链接 </p>-->
+                 <p class="">
+                     <input class="copy-url txt-blue" style="display: block; height: 30px; width:200px; border:none;"  type="text" value={{generalizeUrl}} readonly="readonly" class="copy-target">
+                     <span style="display: block" class="copy-url txt-center btn-red iconfont copy">&#xe6c4; 复制邀请链接</span>
+                 </p>
+                <!--<p class="reproduce">
+                    <input type="text" value={{generalizeUrl}} readonly="readonly" class="copy-target">
+                    <span class="copy">复制邀请链接</span>
+                </p>-->
+
+                <p ng-click="showMAPic()" class="scan-ma txt-center btn-green iconfont">&#xe624; 扫二维码</p>
+            </div>
+        </div>
+        <div ng-click="showMAPic()" ng-if="showMA" class="db-bg">
+            <div class="MAPic">
+                <img ng-src={{MAPic}} alt="">
+            </div>
+        </div>
+    </div>
+</section>

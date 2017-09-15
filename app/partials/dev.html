@@ -1,0 +1,18 @@
+<div class="pl15 pr15">
+    <button class="btn btn-blue mt15" ng-click="test111();">TEST</button>
+    <button class="btn btn-blue mt15" ng-click="showAlertDialog=true">敢点我么</button>
+    <button class="btn btn-blue mt15" ng-click="showAlertDialog1=true">敢点我下试试</button>
+    <button class="btn btn-blue mt15" ng-click="showConfirmDialog=true">信不信老子然你破财</button>
+</div>
+
+<alert ng-show="showAlertDialog" title="我草，还真尼玛敢点我" notify="test();" sure-btn="是">
+    <div class="txt-center pt20 pb30">你是逗逼么？</div>
+</alert>
+
+<alert ng-show="showAlertDialog1" title="让你点你就点，还真尼玛听话" notify="test1();" sure-btn="是">
+    <div class="txt-center pt20 pb30">你是猴子派来的逗逼么？</div>
+</alert>
+
+<confirm ng-show="showConfirmDialog" title="不信是吧" sure-btn="给" cancel-btn="不给" cancel-notify="cancelNotify();" sure-notify="sureNotify();">
+    <div class="txt-center pt20 pb30">问你要50块钱你给不给？</div>
+</confirm>

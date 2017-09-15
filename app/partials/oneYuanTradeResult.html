@@ -1,0 +1,60 @@
+<section class="page-trade">
+    <div class="page-trade-clearing">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>新人专享 - 点买小恒指</h3>
+                <back-menu></back-menu>
+            </div>
+        </header>
+        <div class="trade-menu">
+            <ul>
+                <li class="m-buy"><a href="#/oneYuanTrade?backURL=/oneYuanIntroduce">点买</a></li>
+                <li class="m-sell"><a href="#/oneYuanTradeSell?backURL=/oneYuanIntroduce">点卖</a></li>
+                <li class="m-result"><a href="#/oneYuanTradeResult">结算</a></li>
+            </ul>
+        </div>
+        <div class="mod-clearing" style="padding-bottom: 0">
+            <div class="list-wrap">
+                <div ng-repeat="settle in settleDataList" class="wrap">
+                    <ul class="row-1">
+                        <li class="txt-s16">{{settle.commodityName}}－{{settle.commodityNo}}{{settle.contractNo}} <i class="commoID txt-s12">JQ {{settle.id}}</i></li>
+                        <li class="txt-right txt-s12">{{settle.closeReasonName}}</li>
+                    </ul>
+                    <div class="row-2">
+                        <ul class="clearfix">
+                            <li class="fl">
+                                <p ng-if="settle.direction == 'B'" class="title txt-red">看涨{{settle.amount}}手</p>
+                                <p ng-if="settle.direction == 'S'" class="title txt-green">看跌{{settle.amount}}手</p>
+                                <p>买入 &nbsp;&nbsp;{{settle.buyPriceDeal}}</p>
+                                <p>卖出 &nbsp;&nbsp;{{settle.sellPriceDeal}}</p>
+                            </li>
+                            <li class="fl">
+                                <p ng-if="settle.profitTotal < 0" class="title txt-green">{{settle.profitTotal}}</p>
+                                <p ng-if="settle.profitTotal > 0" class="title txt-red">+{{settle.profitTotal}}</p>
+                                <p ng-if="settle.profitTotal == 0" class="title txt-red">0</p>
+                                <p>止盈 &nbsp;&nbsp;{{settle.quitGain}}</p>
+                                <p>止损 &nbsp;-{{settle.quitLoss}}</p>
+                            </li>
+                            <li class="fr pt15">
+                                <div ng-if="settle.status == 8" class="state">结算成功</div>
+                            </li>
+                        </ul>
+                        <p ng-if="settle.profitTotal > 0 && type == 3" class="pt5">{{settle.profitTotal}}元 = 您得{{settle.profitShare}}元 + 投资人得{{settle.investorGain}}元</p>
+                    </div>
+                    <div class="row-3">
+                        <ul ng-if="settle.id == currTrade">
+                            <li class="clearfix">买入类型<span class="fr">市价买入</span></li>
+                            <li class="clearfix">买入时间<span class="fr">{{settle.dealTime | date:'yyyy.MM.dd HH:mm:ss'}}</span></li>
+                            <li class="clearfix">结算时间<span class="fr">{{settle.liquidateTime | date:'yyyy.MM.dd HH:mm:ss'}}</span></li>
+                            <li ng-if="type == 2" class="clearfix">合同详情<a href="#/agreement{{settle.commodityNo}}?id={{settle.id}}&backURL=outerTradeResult/{{commodityNo}}/{{type}}" class="fr txt-blue">查看合同</a></li>
+                        </ul>
+                        <div ng-if="settle.id == currTrade" ng-click="showCurrTradeDetail(settle.id)" class="desc">收起</div>
+                        <div ng-if="settle.id != currTrade" ng-click="showCurrTradeDetail(settle.id)" class="desc">查看详情</div>
+                    </div>
+                </div>
+
+                <div ng-if="settleDataList.length == 0" class="mod-no-data">暂无数据</div>
+            </div>
+        </div>
+    </div>
+</section>

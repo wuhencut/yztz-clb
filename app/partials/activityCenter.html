@@ -1,0 +1,16 @@
+<section class="page-user">
+    <div class="page-activity">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>活动中心</h3>
+                <back-menu></back-menu>
+            </div>
+        </header>
+        <a href={{item.bannerUrl[2]}} ng-repeat="item in activityList" ng-if="activityList.length > 0" class="activity-list mb15">
+            <img src={{item.bannerUrl[0]}} alt="">
+        </a>
+        <div class="wait-activity txt-center txt-s24 txt-bold txt-white">
+            各项活动敬请期待
+        </div>
+    </div>
+</section>

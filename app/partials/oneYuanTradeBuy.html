@@ -1,0 +1,92 @@
+<section class="page-trade">
+    <div class="page-trade-buy">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>委托买入</h3>
+                <a href="#/oneYuanTrade" class="nav-left">
+                    <i class="icon-back"></i>
+                </a>
+            </div>
+        </header>
+        <div class="mod-futures-buy">
+            <ul class="wrap">
+                <li class="clearfix">
+                    <div class="fl">小恒指-{{contractNo}}合约</div>
+                    <div class="fr">
+                        <span ng-if="isInPeriod" class="txt-s12" style="vertical-align: middle">{{tips}}自动平仓</span>
+                        <span ng-if="!isInPeriod" class="txt-s12" style="vertical-align: middle">{{tips}}</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="wrap mt15">
+                <li class="clearfix">
+                    <div class="fl">交易数量</div>
+                    <div class="fr choose">
+                        <!--inline-block自带间隙BUG-->
+                        <!--<span ng-if="selectedCount<countNum" ng-repeat="m in tradeNumList | limitTo:countNum" ng-class="{current:tradeIndex==$index}" ng-click="chooseTradeNum($index,m)">{{m}}手</span>-->
+                        <span class="txt-gray" style="border:none">1手</span>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <div class="fl">触发止盈</div>
+                    <div class="fr">
+                        <span>{{experienceQuitGainValue}}元</span>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <div class="fl">触发止损</div>
+                    <div class="fr choose">
+                        <span style="border:none;color:#666666">-{{lowMoney}}元</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="wrap mt15">
+                <li class="clearfix">
+                    <div class="fl">冻结 > 履约保证金</div>
+                    <div class="fr">
+                        <span class="txt-orange">1元</span>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <div class="fl">支付 > 交易综合费</div>
+                    <div class="fr">
+                        <span class="txt-orange">{{serviceMoney}}元</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="wrap mt15">
+                <li>
+                    <label ng-if="buyChange == 'buy'">
+                        <input type="radio" checked class="txt-red" style="background-color: red;">
+                        即时买入 (最新买入价{{futureInfo.buyPrice}})
+                    </label>
+                    <label ng-if="buyChange == 'sell'">
+                        <input type="radio" checked style="background-color: red;">
+                        即时买入 (最新买入价{{futureInfo.sellPrice}})
+                    </label>
+                </li>
+            </ul>
+            <p class="desc">＊实盘交易时会为您匹配合作投资人，执行您的买卖指令，并与您共享收益共担风险</p>
+        </div>
+        <div class="wrap-btn">
+            <div class="wrap">
+                <button ng-if="buyChange == 'buy'" class="btn btn-red" ng-click="toTrade();">确定看涨</button>
+                <button ng-if="buyChange == 'sell'" class="btn btn-green" ng-click="toTrade();">确定看跌</button>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="dialog-wrap menu-pop dialog-posit" ng-if="showLossMoney" ng-click="$parent.showLossMoney=false;">
+    <div class="slide-in main">
+        <ul class="txt-center">
+            <li  ng-repeat="m in lowMoneyList"  ng-class="{current:lowIndex==$index}" ng-click="chooseLossMoney($index,m)">-{{m}}元</li>
+        </ul>
+    </div>
+</div>
+<div class="dialog-wrap menu-pop dialog-posit" ng-if="showCountNum" ng-click="$parent.showCountNum=false;">
+    <div class="slide-in main">
+        <ul class="txt-center">
+            <li  ng-repeat="m in tradeNumList"  ng-class="{current:tradeIndex==$index}" ng-click="chooseTradeNum($index,m)">{{m}}手</li>
+        </ul>
+    </div>
+</div>

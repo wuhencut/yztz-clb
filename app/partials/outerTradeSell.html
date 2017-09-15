@@ -1,0 +1,146 @@
+<section class="page-trade">
+    <div class="page-trade-sell">
+        <header class="page-header">
+            <div class="header-wrap">
+                <common-title></common-title>
+                <a href="#/index" class="nav-left">
+                    <i class="icon-back"></i>
+                </a>
+                <a href="#/tradeRule{{commodityNo}}?backURL=/outerTradeSell/{{commodityNo}}/{{type}}" class="nav-right">规则</a>
+            </div>
+        </header>
+        <div class="mod-clearing">
+            <div class="trade-menu">
+                <ul>
+                    <li class="m-buy"><a href="#/outerTrade/{{commodityNo}}/{{type}}">点买</a></li>
+                    <li class="m-sell"><a href="#/outerTradeSell/{{commodityNo}}/{{type}}">点卖</a></li>
+                    <li class="m-result"><a href="#/outerTradeResult/{{commodityNo}}/{{type}}">结算</a></li>
+                </ul>
+            </div>
+            <div ng-repeat="trade in saleList" class="wrap mt15 txt-gray pb15">
+                <ul class="row-1">
+                    <li class="txt-s16">{{trade.commodityName}}－{{trade.commodityNo}}{{trade.contractNo}} <i
+                            class="txt-s12 pl10">JQ {{trade.id}}</i></li>
+                    <li ng-if="trade.status != 4" class="txt-right txt-light-gray txt-s12">设置止盈止损</li>
+                    <li ng-click="setGainLoss(trade.id,trade.commodityNo,trade.quitGain,trade.quitLoss,trade.rmb)"
+                        ng-if="trade.status == 4" class="txt-right txt-s12 txt-blue">设置止盈止损
+                    </li>
+                </ul>
+                <div class="row-2">
+                    <ul class="clearfix">
+                        <li class="fl">
+                            <p ng-if="trade.direction == 1" class="title txt-red">看涨{{trade.amount}}手</p>
+                            <p ng-if="trade.direction == -1" class="title txt-green">看跌{{trade.amount}}手</p>
+                            <p>买入 &nbsp;&nbsp;{{trade.buyPriceDeal}}</p>
+                            <p>现价 &nbsp;&nbsp;{{trade.price}}</p>
+                        </li>
+                        <li class="fl">
+                            <p ng-if="trade.rmb>0 && trade.status >= 4" class="title txt-red">+{{trade.rmb}}<i
+                                    class="txt-light-gray txt-s12">({{trade.symbol}}{{trade.currMoney}})</i>
+                            </p>
+                            <p ng-if="trade.rmb<0 && trade.status >= 4" class="title txt-green">{{trade.rmb}}<i
+                                    class="txt-light-gray txt-s12">({{trade.symbol}}{{trade.currMoney}})</i>
+                            </p>
+                            <p ng-if="trade.rmb==0 && trade.status >= 4" class="title txt-red">0<i
+                                    class="txt-light-gray txt-s12">({{trade.symbol}}0)</i></p>
+                            <p ng-if="trade.status < 4" class="title txt-light-gray">— —</p>
+                            <p>止盈 &nbsp;&nbsp;{{trade.quitGain}}</p>
+                            <p>止损 &nbsp;-{{trade.quitLoss}}</p>
+                        </li>
+                        <li class="fr pt15">
+                            <div ng-click="sellOutDialog(trade.id,trade.commodityNo,trade.direction,trade.quitCloseRatio,trade.amount,trade.status)"
+                                 ng-if="trade.status == 4" class="state-blue">平仓
+                            </div>
+                            <div ng-if="trade.status == 1 || trade.status == 2 || trade.status == 3" class="state">
+                                正在<br>买入
+                            </div>
+                            <div ng-if="trade.status == 5 || trade.status == 6 || trade.status == 7"
+                                 class="state">
+                                正在<br>卖出
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--止盈止损弹窗-->
+            <div ng-if="currCommoID == 1" class="mod-all-sell">
+                <div class="all-sell-options txt-center">
+                    <div class="title-inf txt-s14">
+                        <p class="txt-s14 txt-left">{{setWindowObj.setCommoName}} - {{setWindowObj.setCommoNo}}{{setWindowObj.setContractNo}}</p>
+                        <p ng-if="setDirection == 1" class="txt-left">看涨{{setWindowObj.setAmount}}手</p>
+                        <p ng-if="setDirection == -1" class="txt-left">看跌{{setWindowObj.setAmount}}手</p>
+                        <p ng-if="rmb > 0" class="txt-red txt-right">+{{rmb}}</p>
+                        <p ng-if="rmb < 0" class="txt-green txt-right">{{rmb}}</p>
+                        <p ng-if="rmb == 0" class="txt-red txt-right">0</p>
+
+                    </div>
+                    <div class="amount-adjust">
+                        <p class="gainLossSet">盈利
+                            <i ng-if="gainInput > onePointPrice" ng-click="setAdd('gain',gainInput,-1)"
+                               class="amount-btn-reduce"></i>
+                            <i ng-if="gainInput <= onePointPrice" class="btn-reduce-disabled"></i>
+                            <input type="number" class="amount txt-center" ng-model="$parent.gainInput" style="width: 64px;"/>
+                            <i ng-if="gainInput < setWindowObj.setGainPrincipal"
+                               ng-click="setAdd('gain',gainInput, 1)" class="amount-btn-add"></i>
+                            <i ng-if="gainInput >= setWindowObj.setGainPrincipal" class="btn-add-disabled"></i>
+                            元时,触发平仓
+                        </p>
+                        <p>亏损
+                            <i ng-if="lossInput > onePointPrice" ng-click="setAdd('loss',lossInput,-1)"
+                               class="amount-btn-reduce"></i>
+                            <i ng-if="lossInput <= onePointPrice" class="btn-reduce-disabled"></i>
+                            <input type="number" class="amount txt-center" ng-model="$parent.lossInput" style="width: 64px;"/>
+                            <i ng-if="lossInput < setLossPrincipal"
+                               ng-click="setAdd('loss',lossInput, 1)" class="amount-btn-add"></i>
+                            <i ng-if="lossInput >= setLossPrincipal" class="btn-add-disabled"></i>
+                            元时,触发平仓
+                        </p>
+                    </div>
+                    <div class="dialog-confirm txt-s16 txt-blue">
+                        <p ng-click="cancelDialog()">取消</p>
+                        <p ng-click="confirmGainLoss()">确定</p>
+                    </div>
+                </div>
+            </div>
+            <!--弹出全部平仓窗口-->
+            <div ng-if="sellAllID == 1" class="mod-all-sell">
+                <div class="all-sell-options">
+                    <ul class="txt-s14">
+                        <li><i ng-click="chooseAllSell()" ng-if="allSellStatus == 1 || allSellStatus == 2" class="all-sell-check"></i><i ng-if="allSellStatus == 0" class="all-sell-checked"></i><i>共{{allIDsArr.length}}笔 > 全部即时平仓</i></li>
+                        <li ng-if="upIDsArr.length > 0 && upIDsArr.length < allIDsArr.length"><i ng-click="chooseAllUp()" ng-if="allSellStatus == 0 || allSellStatus == 2" class="all-sell-check"></i><i ng-if="allSellStatus == 1" class="all-sell-checked"></i><i><i class="txt-red">看涨共{{upIDsArr.length}}笔</i> > 全部即时平仓</i></li>
+                        <li ng-if="downIDsArr.length > 0 && downIDsArr.length < allIDsArr.length"><i ng-click="chooseAllDown()" ng-if="allSellStatus == 1 || allSellStatus == 0" class="all-sell-check"></i><i ng-if="allSellStatus == 2" class="all-sell-checked"></i><i><i class="txt-green">看跌共{{downIDsArr.length}}笔</i> > 全部即时平仓</i></li>
+                        <div class="dialog-confirm txt-s16 txt-blue txt-center">
+                            <p ng-click="cancelDialog()">取消</p>
+                            <p ng-click="sellCurrCommodity()">确定</p>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <!--弹出单个平仓窗口-->
+            <div ng-if="sellOutID == 1" class="mod-all-sell">
+                <div class="all-sell-options txt-center">
+                    <div class="sell-directions clearfix">
+                        <div ng-if="choiceStatus == 0" class="txt-blue chosen sell-left fl ml30">即时平仓</div>
+                        <div ng-if="choiceStatus == -1 || choiceStatus == 1" ng-click="chooseSellOut()" class="sell-left fl ml30">即时平仓</div>
+                        <div ng-if="choiceStatus == 1" class="txt-blue chosen sell-right fr mr30"><p>即时卖出<br>马上<i ng-if="tradeDirection == 1" class="txt-green">看跌</i><i ng-if="tradeDirection == -1" class="txt-red">看涨</i></p></div>
+                        <div ng-if="choiceStatus == -1 || choiceStatus == 0" ng-click="chooseBackHand()" class="sell-right fr mr30"><p>即时卖出<br>马上<i ng-if="tradeDirection == 1" class="txt-green">看跌</i><i ng-if="tradeDirection == -1" class="txt-red">看涨</i></p></div>
+                    </div>
+                    <div class="dialog-confirm txt-s16 txt-blue">
+                        <p ng-click="cancelDialog()">取消</p>
+                        <p ng-click="sellCurrCommodity()">确定</p>
+                    </div>
+                </div>
+            </div>
+            <!--全部平仓-->
+            <div class="mod-sell-footer txt-white txt-s18">
+                <p ng-if="total>0" class="txt-light-gray txt-s12 txt-center">持仓盈亏 <i class="txt-red">+{{total}}</i></p>
+                <p ng-if="total<0" class="txt-light-gray txt-s12 txt-center">持仓盈亏 <i class="txt-green">{{total}}</i></p>
+                <p ng-if="total==0" class="txt-light-gray txt-s12 txt-center">持仓盈亏 <i class="txt-red">0</i></p>
+                <button ng-click="allSellDialog()" class="btn btn-blue mt10" ng-if="allIDsArr.length>=2">全部平仓</button>
+            </div>
+            <div ng-if="currCommoID != 0 || sellOutID != 0 || sellAllID != 0" class="db-bg" style="z-index: 10000"></div>
+            <div ng-if="saleList.length == 0" class="mod-no-data">暂无交易</div>
+        </div>
+    </div>
+</section>
+<common-menu></common-menu>

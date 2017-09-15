@@ -1,0 +1,104 @@
+<section class="page-news">
+    <div class="page-news-content">
+        <header ng-if="showHeader" class="page-header">
+            <div class="header-wrap">
+                <h3>资讯直播</h3>
+            </div>
+        </header>
+        <div class="mod-news-wrap">
+            <div class="timecon">
+                <ul class="livecon">
+                    <li ng-repeat="news in newsList" class="flash {{news.important ? 'important' : ''}}"
+                        id="{{new.id}}">
+                        <div>
+                            <div class="timeline">
+                                <div class="dotbg">
+                                    <div class="dot"></div>
+                                </div>
+                                <div class="time">{{news.time}}</div>
+                            </div>
+                            <div ng-if="news.type==0" class="live-c onlytxt">
+                                <div class="txt">
+                                    <div ng-bind-html="news.content"></div>
+                                    <div ng-if="news.showImgIcon" class="text-img">
+                                        <a href="/images/jin10/{{news.imgUrl}}" class="text-img-lnk">
+                                            <img class="thumb" src="/images/jin10/{{news.imgUrl}}" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="news.type==1" class="live-c">
+                                <div class="txt">
+                                    <div ng-bind-html="news.content"></div>
+                                    <div class="live-ele {{news.important ? 'important' : ''}}">
+                                        <img class="flag" src="/images/jin10/{{news.country}}.png">
+                                        <table class="pindex">
+                                            <tbody>
+                                            <tr>
+                                                <td>前值:{{news.prefix}}</td>
+                                                <td>预期：{{news.expected}}</td>
+                                                <td>实际：<span id="actual_{actual_id}" class="fact {{news.evaluate.className}}">{{news.published}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="live-ele-l">
+                                                        <img src="/images/jin10/{{news.star}}.png" width="20" height="34"/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="live-ele-r {{news.evaluate.className}}">{{news.evaluate.text}}</div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="timebox" ng-if="month!='' && day!=''">
+                    <span>{{day}}</span>
+                    <p>{{month}}月</p>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <div class="footer-wrap">
+                <ul>
+                    <li>
+                        <a href="#/index" class="nav-home">
+                            <i class="iconfont">&#xe611;</i>
+                            <div>首页</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/outerTrade/HSI/2?backURL=/news" class="nav-trade">
+                            <i class="iconfont">&#xe612;</i>
+                            <div>交易</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/news" class="nav-news">
+                            <i class="iconfont">&#xe61b;</i>
+                            <div>资讯</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/discover" class="nav-discover">
+                            <i class="iconfont">&#xe61a;</i>
+                            <div>发现</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/myHome" class="nav-user">
+                            <i class="iconfont">&#xe613;</i>
+                            <div>我的</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</section>

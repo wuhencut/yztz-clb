@@ -1,0 +1,41 @@
+<section class="page-trade">
+    <div class="page-trade-agree">
+        <header class="page-header">
+            <div class="header-wrap">
+                <h3>协议签署</h3>
+                <a href="#{{backURL}}" class="nav-left">
+                    <i class="icon-back"></i>
+                </a>
+            </div>
+        </header>
+        <div class="mod-agree">
+            <p class="tips" ng-repeat="commodityTitle in commodityTitles" ng-if="commodityNo == commodityTitle.commodity">重要提示：<br>请您务必在参与{{commodityTitle.name}}期货实盘交易前详细阅读本规则，并明白{{commodityTitle.name}}期货交易的风险性</p>
+            <div class="">
+                <div class="pb5">
+                    <label><input type="checkbox" id="agreement" checked/> 我已阅并签署以下协议</label>
+                </div>
+                <p class="pl10">
+                    <a href="#/agreementCL" class="txt-blue" ng-if="commodityNo == 'CL'">《策略宝投资人与用户参与美原油期货交易合作协议》<br></a>
+                    <a href="#/agreementGC" class="txt-blue" ng-if="commodityNo == 'GC'">《策略宝投资人与用户参与美黄金期货交易合作协议》<br></a>
+                    <a href="#/agreementHSI" class="txt-blue" ng-if="commodityNo == 'HSI'">《策略宝投资人与用户参与恒指期货交易合作协议》<br></a>
+                    <a href="#/agreementSI" class="txt-blue" ng-if="commodityNo == 'SI'">《策略宝投资人与用户参与美白银期货交易合作协议》<br></a>
+                    <a href="#/agreementDAX" class="txt-blue" ng-if="commodityNo == 'DAX'">《策略宝投资人与用户参与德指期货交易合作协议》<br></a>
+                    <a href="#/agreementCN" class="txt-blue" ng-if="commodityNo == 'CN'">《策略宝投资人与用户参与富时A50期货交易合作协议》<br></a>
+                    <a href="#/agreementMHI" class="txt-blue" ng-if="commodityNo == 'MHI'">《投资人与用户参与小恒指期货交易合作协议》<br></a>
+                    <a href="#/agreementSaletorCL" class="txt-blue" ng-if="commodityNo == 'CL'">《附件1：策略宝用户参与美原油期货交易合作涉及费用及资费标准》<br></a>
+                    <a href="#/agreementSaletorGC" class="txt-blue" ng-if="commodityNo == 'GC'">《附件1：策略宝用户参与美黄金期货交易合作涉及费用及资费标准》<br></a>
+                    <a href="#/agreementSaletorHSI" class="txt-blue" ng-if="commodityNo == 'HSI'">《附件1：策略宝用户参与恒指期货交易合作涉及费用及资费标准》<br></a>
+                    <a href="#/agreementSaletorSI" class="txt-blue" ng-if="commodityNo == 'SI'">《附件1：策略宝用户参与美白银期货交易合作涉及费用及资费标准》<br></a>
+                    <a href="#/agreementSaletorDAX" class="txt-blue" ng-if="commodityNo == 'DAX'">《附件1：策略宝用户参与德指期货交易合作涉及费用及资费标准》<br></a>
+                    <a href="#/agreementSaletorCN" class="txt-blue" ng-if="commodityNo == 'CN'">《附件1：策略宝用户参与富时A50期货交易合作涉及费用及资费标准》<br></a>
+                    <a href="#/agreementSaletorMHI" class="txt-blue" ng-if="commodityNo == 'MHI'">《附件1：用户参与小恒指期货交易合作涉及费用及资费标准》<br></a>
+                </p>
+            </div>
+        </div>
+        <div class="wrap-btn">
+            <div class="wrap">
+                <button class="btn btn-blue" ng-click="singAgreement();">确认</button>
+            </div>
+        </div>
+    </div>
+</section>
